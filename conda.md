@@ -25,3 +25,5 @@ ml load Miniconda3/4.9.2
 eval "$(conda shell.bash hook)"
 conda activate conda_env_name_here_yo
 ```
+# Remove a conda environment
+`conda remove -n conda_env_name_here_yo --all`
