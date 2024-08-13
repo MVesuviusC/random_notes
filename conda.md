@@ -27,3 +27,15 @@ conda activate conda_env_name_here_yo
 ```
 # Remove a conda environment
 `conda remove -n conda_env_name_here_yo --all`
+
+# Get and set environment variables inside a conda environment
+```{bash}
+conda activate my_cool_conda_thing
+
+conda env config vars list
+conda env config vars set rrrSnvs_version=0.2.0
+
+conda activate my_cool_conda_thing
+
+echo ${rrrSnvs_version}
+```
