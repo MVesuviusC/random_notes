@@ -1,4 +1,5 @@
 # yaml header
+```
 ---
 title: "Title of Stuff"
 author: "Matthew V. Cannon"
@@ -22,6 +23,8 @@ knitr:
         message: false
 lightbox: true
 ---
+```
+
 
 # To specify cache variables inside a chunk
 ```{r}
