@@ -34,4 +34,5 @@ code
 code
 ```
 
-
+# Including child documents
+{{< include child_qmds/helper_functions.qmd >}}
