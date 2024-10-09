@@ -33,7 +33,7 @@ code
 ```
 
 ```{r}
-#| cache.vars: c(one_var, another_var)
+#| cache.vars: [one_var, another_var]
 code
 ```
 
