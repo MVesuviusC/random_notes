@@ -21,3 +21,48 @@ https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-package
 
 To fix, set `options(repos = c(CRAN = "https://cran.rstudio.com/"))`
 
+# Debugging
+
+`browser()` can put into a function to initiate a debug session at a certain point
+
+```{r}
+do_stuff <- function(x) {
+    x <- x * 3
+
+    browser()
+
+    x <- x - 1
+
+    return(x)
+}
+```
+
+`options(error = recover)` will make R stop and debug when it hits an error
+
+22.5.1 dump.frames()
+dump.frames() is the equivalent to recover() for non-interactive code; it saves a last.dump.rda file in the working directory. Later, an interactive session, you can load("last.dump.rda"); debugger() to enter an interactive debugger with the same interface as recover(). This lets you “cheat”, interactively debugging code that was run non-interactively.
+
+```
+# In batch R process ----
+dump_and_quit <- function() {
+  # Save debugging info to file last.dump.rda
+  dump.frames(to.file = TRUE)
+  # Quit R with error status
+  q(status = 1)
+}
+options(error = dump_and_quit)
+
+# In a later interactive session ----
+load("last.dump.rda")
+debugger()
+```
+
+# Lintr
+when lintr decides you should be using 2 spaces instead of 4:
+Add this to your .lintr file (in project folder or home)
+```
+linters: linters_with_defaults(
+    indentation_linter(indent = 4L))
+```
+From https://stackoverflow.com/questions/75766381/how-to-set-tab-size-equivalent-of-4-spaces-in-lintr-configuration-file
+
