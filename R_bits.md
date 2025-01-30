@@ -60,6 +60,7 @@ debugger()
 # Lintr
 when lintr decides you should be using 2 spaces instead of 4:
 Add this to your .lintr file (in project folder or home)
+Make sure you have a \n after the code
 ```
 linters: linters_with_defaults(
     indentation_linter(indent = 4L))
