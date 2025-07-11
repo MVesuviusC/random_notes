@@ -27,3 +27,9 @@ alias sbatch_l='sbatch --time=$(get_maint_time)'
 `ps -U mvc002 -u mvc002 u | wc -l`
 
 Franklin has 300 process limit
+
+## See OOM kill events
+
+```{bash}
+ dmesg | grep `id -u` | grep oom
+```
