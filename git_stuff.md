@@ -9,3 +9,6 @@ git log --oneline | head
 git revert 18f5020
 ```
 
+# Git commit message syntax conventions
+https://www.conventionalcommits.org/en/v1.0.0/#summary
+
