@@ -23,6 +23,10 @@ alias sbatch_l='sbatch --time=$(get_maint_time)'
 
 `scontrol update jobid=4272971 TimeLimit=2-00:00:00`
 
+## Set high priority for slurm job
+
+`srun_l -c 5 -p himem --priority=TOP --x11 --pty bash`
+
 ## Get total number of processes per user
 `ps -U mvc002 -u mvc002 u | wc -l`
 
