@@ -21,6 +21,52 @@ https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-package
 
 To fix, set `options(repos = c(CRAN = "https://cran.rstudio.com/"))`
 
+## failed to install ragg due to missing webp and freetype2 in R 4.5.0
+Package libwebp was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libwebp.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'libwebp', required by 'virtual:world', not found
+Package 'libwebpmux', required by 'virtual:world', not found
+Package libwebp was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libwebp.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'libwebp', required by 'virtual:world', not found
+Package 'libwebpmux', required by 'virtual:world', not found
+Using PKG_CFLAGS=
+Using PKG_LIBS=-lfreetype -lpng16 -ltiff -lz -ljpeg -lbz2 -lwebp -lwebpmux
+-----------------------------[ ANTICONF ]-------------------------------
+Configuration failed to find one of freetype2 libpng libtiff-4 libjpeg libwebp libwebpmux. Try installing:
+ * deb: libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libwebp-dev (Debian, Ubuntu, etc)
+ * rpm: freetype-devel libpng-devel libtiff-devel libjpeg-devel libwebp-devel (Fedora, CentOS, RHEL)
+If freetype2 libpng libtiff-4 libjpeg libwebp libwebpmux is already installed, check that 'pkg-config' is in your
+PATH and PKG_CONFIG_PATH contains a freetype2 libpng libtiff-4 libjpeg libwebp libwebpmux.pc file. If pkg-config
+is unavailable you can set INCLUDE_DIR and LIB_DIR manually via:
+R CMD INSTALL --configure-vars='INCLUDE_DIR=... LIB_DIR=...'
+-------------------------- [ERROR MESSAGE] ---------------------------
+<stdin>:1:10: fatal error: ft2build.h: No such file or directory
+compilation terminated.
+--------------------------------------------------------------------
+ERROR: configuration failed for package ‘ragg’
+* removing ‘/gpfs0/home2/gdrobertslab/mvc002/R/x86_64-pc-linux-gnu-library/4.5/ragg’
+
+The downloaded source packages are in
+        ‘/tmp/Rtmp5FaIpC/downloaded_packages’
+Warning message:
+In install.packages("ragg") :
+  installation of package ‘ragg’ had non-zero exit status
+
+### Fix by:
+load R
+make sure GCC version is compatable with freetype2
+
+ml GCC/9.3.0  OpenMPI/4.0.3 R/4.5.0
+ml load webp
+ml load freetype/2.10.1
+ml load Glib/2.64.1 # was getting message about missing glib
+####This wasn't populated properly for some reason
+export PKG_CONFIG_PATH=/export/apps/opt/webp/1.6.0/lib/pkgconfig:${PKG_CONFIG_PATH}
+
+start R, install.packages("ragg")
 # Debugging
 
 `browser()` can put into a function to initiate a debug session at a certain point
