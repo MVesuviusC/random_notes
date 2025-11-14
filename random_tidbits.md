@@ -9,3 +9,11 @@ Disabled all telemetry
 Also seeing javascript 'node' processes as the culprit
 
 Disabling telemetry didn't seem to matter. I've started using salloc to get an allocation and connecting straight to that node.
+
+## Connecting VScode to igm servers
+Emily got error:
+`could not establish connection to 'node': the remote host oes not meet the pre-requisites for running the VS Code server.`
+
+Solution: install older version of vscode :-| due to OS being too old
+
+> Starting with VS Code release 1.99 (March 2025), the prebuilt servers distributed by VS Code are only compatible with Linux distributions that are based on glibc 2.28 or later. These include for example, Debian 10, RHEL 8, or Ubuntu 20.04.
