@@ -17,3 +17,6 @@ Emily got error:
 Solution: install older version of vscode :-| due to OS being too old
 
 > Starting with VS Code release 1.99 (March 2025), the prebuilt servers distributed by VS Code are only compatible with Linux distributions that are based on glibc 2.28 or later. These include for example, Debian 10, RHEL 8, or Ubuntu 20.04.
+
+## WinSCP
+To get files to open instead of edit when double clicked: Options > Preferences > Panels > Double-Click > Operation to perform on double-click: Open
