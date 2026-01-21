@@ -103,6 +103,11 @@ load("last.dump.rda")
 debugger()
 ```
 
+# OpenSSL error when installing a package
+
+
+
+
 # Lintr
 when lintr decides you should be using 2 spaces instead of 4:
 Add this to your .lintr file (in project folder or home)
@@ -113,3 +118,6 @@ linters: linters_with_defaults(
 ```
 From https://stackoverflow.com/questions/75766381/how-to-set-tab-size-equivalent-of-4-spaces-in-lintr-configuration-file
 
+
+# R hover links/documentation not working
+This stopped working for me when working on the server. I think the ultimate issue was that the R languageserver was not being started. What fixed this was manually starting an R terminal/interactive session, which started the languageserver. I could then close the terminal/interactive session and it still worked. I'm not sure what changed to make this stop working.
