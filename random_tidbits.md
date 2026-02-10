@@ -20,3 +20,9 @@ Solution: install older version of vscode :-| due to OS being too old
 
 ## WinSCP
 To get files to open instead of edit when double clicked: Options > Preferences > Panels > Double-Click > Operation to perform on double-click: Open
+
+## Figshare downloading files
+Find the item number, which is at the end of the download link
+
+Put that into this: wget -O my_file.qs "https://ndownloader.figshare.com/files/item_number_here"
+
