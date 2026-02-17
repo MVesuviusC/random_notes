@@ -53,8 +53,6 @@ or
 uv pip install [thing here]
  This method will not add the package to pyproject.toml
 
-
-
 #### Activate
 source cool_env/bin/activate
 or
