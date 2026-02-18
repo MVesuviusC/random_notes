@@ -26,3 +26,6 @@ Find the item number, which is at the end of the download link
 
 Put that into this: wget -O my_file.qs "https://ndownloader.figshare.com/files/item_number_here"
 
+## Illumina demultiplexing of 10x data
+
+For flex data (SI-TS-**) use I7 normal and I5 reverse compliment
