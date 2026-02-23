@@ -29,3 +29,38 @@ Put that into this: wget -O my_file.qs "https://ndownloader.figshare.com/files/i
 ## Illumina demultiplexing of 10x data
 
 For flex data (SI-TS-**) use I7 normal and I5 reverse compliment
+
+## DNA nexus
+
+### DNAnexus app building
+
+source ~/virtualEnvs/dnanexus/bin/activate
+dx login # login to server, choose which project to attach to
+dx build # build app from the json and associated file(s)
+deactivate
+
+Examples in random_scripts/DNA_nexus
+
+To use, either upload to project or copy from another project.
+
+Click on app in folder on dna nexus site, select settings. When looking for files, make sure you select "Current folder and subfolders" or whatever so you can see your files.
+
+### downloading
+
+# load environment
+source dnanexus/bin/activate
+
+# login
+dx login
+
+dx ls OS_stratification_2025_05_19/BAM/*RNA-Seq.bam \
+  | perl -pe 's/ .+//' \
+  > misc/RNAseq_bam_files.txt
+
+dx describe --json --multi OS_stratification_2025_05_19/BAM/*RNA-Seq.bam.bai \
+  > misc/RNAseq_file_metadata.json
+
+dx download works well too, but had issues where md5sums were missing from the file metadata and the file was empty.
+
+Ended up using
+dx make_download_url ${file_id} and then wget -c in a loop in 26_stratification_data project
