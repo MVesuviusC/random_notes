@@ -64,3 +64,10 @@ dx download works well too, but had issues where md5sums were missing from the f
 
 Ended up using
 dx make_download_url ${file_id} and then wget -c in a loop in 26_stratification_data project
+
+
+## Unmute zoom when signing in on podium through phone
+Push *1 (bottom left of dialer keypad)
+Brings up menu on far screen (for us)
+hit 2 to unmute mic
+Hit * again to hide menu
