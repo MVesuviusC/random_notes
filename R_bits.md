@@ -67,6 +67,7 @@ ml load Glib/2.64.1 # was getting message about missing glib
 export PKG_CONFIG_PATH=/export/apps/opt/webp/1.6.0/lib/pkgconfig:${PKG_CONFIG_PATH}
 
 start R, install.packages("ragg")
+
 # Debugging
 
 `browser()` can put into a function to initiate a debug session at a certain point
@@ -106,8 +107,6 @@ debugger()
 # OpenSSL error when installing a package
 
 
-
-
 # Lintr
 when lintr decides you should be using 2 spaces instead of 4:
 Add this to your .lintr file (in project folder or home)
@@ -121,3 +120,49 @@ From https://stackoverflow.com/questions/75766381/how-to-set-tab-size-equivalent
 
 # R hover links/documentation not working
 This stopped working for me when working on the server. I think the ultimate issue was that the R languageserver was not being started. What fixed this was manually starting an R terminal/interactive session, which started the languageserver. I could then close the terminal/interactive session and it still worked. I'm not sure what changed to make this stop working.
+
+# RV package manager
+This manages R packages on a project-by-project basis
+
+[documentation](https://a2-ai.github.io/rv-docs/reference/faq/)
+
+It uses whatever R version is in your path when you run rv init
+
+```
+rv init
+```
+
+Make sure to populate repositories in rproject.toml
+```
+repositories = [
+    { alias = "CRAN", url = "https://cran.rstudio.com/" },
+    { alias = "PPM", url = "https://packagemanager.posit.co/cran/latest" },
+    { alias = "bioconductor", url = "https://bioconductor.org/packages/3.22/bioc" },
+    { alias = "BioCann", url = "https://bioconductor.org/packages/3.22/data/annotation"},
+    { alias = "BioCexp", url = "https://bioconductor.org/packages/3.22/data/experiment" },
+    { alias = "BioCworkflows", url = "https://bioconductor.org/packages/3.22/workflows"},
+]
+```
+
+```
+rv add tidyverse
+
+// The modules here are just for my HPC
+ml load CMake/3.16.4 XZ/5.2.5 NLopt/2.6.1 webp freetype/2.10.1
+rv add nichenetr --git https://github.com/saeyslab/nichenetr --tag v2.2.0
+
+rv sync
+```
+
+make sure to add these files to your github:
+- rv/scripts/activate.R
+- rv/scripts/rvr.R
+- rv/.gitignore
+- .Rprofile
+- rv.lock
+- rproject.toml
+
+When cloning a new repo that used rv:
+- clone
+- cd into the repo
+- rv sync to install all packages
