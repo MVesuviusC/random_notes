@@ -210,8 +210,13 @@ When cloning a new repo that used rv:
 - cd into the repo
 - rv sync to install all packages
 
-In vscode to keep from getting angry messages about your R version not matching your R version path in the settings, change your settings json:
-"r.rterm.linux": "R",
-    "r.rpath.linux": "R",
+In vscode to keep from getting angry messages about your R version not matching your R version path in the settings, change your settings json for each project to specify which version of R to use for that project:
+.vscode/settings.json:
+```
+{
+  "r.rterm.linux": "/export/apps/opt/R/4.5.0-foss-2020a/bin/R",
+  "r.rpath.linux": "/export/apps/opt/R/4.5.0-foss-2020a/bin/R",
+}
+```
 
 Making the .vscode/settings.json folder for each project is a way around this. The root cause seems to be the vscode has multiple processes running in the background for linting, languageserver, etc.. and they key off of the R version in the R extension settings.
