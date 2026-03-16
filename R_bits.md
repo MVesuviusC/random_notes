@@ -214,4 +214,4 @@ In vscode to keep from getting angry messages about your R version not matching 
 "r.rterm.linux": "R",
     "r.rpath.linux": "R",
 
-I can't seem to get these to go away. The root cause seems to be the vscode has multiple processes running in the background for linting, languageserver, etc.. and they key off of the R version in the R extension settings. I would need to match these versions with the version loaded in my bashrc. One workaround may be to run R from inside a container but then I can't start slurm jobs.
+Making the .vscode/settings.json folder for each project is a way around this. The root cause seems to be the vscode has multiple processes running in the background for linting, languageserver, etc.. and they key off of the R version in the R extension settings.
