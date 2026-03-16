@@ -1,3 +1,6 @@
+# raw strings
+print(r"{this is not interpreted!@#$%^&*()}")
+
 # Failure to install a package
 
 ```
@@ -68,6 +71,25 @@ export PKG_CONFIG_PATH=/export/apps/opt/webp/1.6.0/lib/pkgconfig:${PKG_CONFIG_PA
 
 start R, install.packages("ragg")
 
+## OpenSSL error when installing a package
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+Error: package or namespace load failed for ‘arrow’ in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/gpfs0/home2/gdrobertslab/mvc002/R/x86_64-pc-linux-gnu-library/4.3/00LOCK-arrow/00new/arrow/libs/arrow.so':
+  libssl.so.3: cannot open shared object file: No such file or directory
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/gpfs0/home2/gdrobertslab/mvc002/R/x86_64-pc-linux-gnu-library/4.3/arrow’
+Warning message:
+In i.p(...) :
+  installation of package ‘/tmp/Rtmp0lZShJ/file18cb322f786c9e/arrow_21.0.0.tar.gz’ had non-zero exit status
+> q()
+
+Fix with:
+module load OpenSSL/3
+
 # Debugging
 
 `browser()` can put into a function to initiate a debug session at a certain point
@@ -103,9 +125,6 @@ options(error = dump_and_quit)
 load("last.dump.rda")
 debugger()
 ```
-
-# OpenSSL error when installing a package
-
 
 # Lintr
 when lintr decides you should be using 2 spaces instead of 4:
@@ -150,9 +169,33 @@ rv add tidyverse
 // The modules here are just for my HPC
 ml load CMake/3.16.4 XZ/5.2.5 NLopt/2.6.1 webp freetype/2.10.1
 rv add nichenetr --git https://github.com/saeyslab/nichenetr --tag v2.2.0
-
-rv sync
 ```
+
+or add the packages to the rproject.toml so it can find compatible versions all at once
+```
+dependencies = [
+    "tidyverse",
+    { name = "ggrepel", git = "https://github.com/slowkow/ggrepel", tag = "0.9.6"},
+    "Seurat",
+    { name = "nichenetr", git = "https://github.com/saeyslab/nichenetr", tag = "v2.2.0" },
+    "ComplexHeatmap",
+    { name = "qs", git = "https://github.com/qsbase/qs", branch = "master" },
+    { name = "rrrSingleCellUtils", git = "https://github.com/kidcancerlab/rrrSingleCellUtils", tag = "v0.21.0" },
+    "celldex",
+    "qs2",
+    "hdf5r",
+    "SingleCellExperiment",
+    "scrapper",
+    "rmarkdown",
+    "jsonlite",
+]
+```
+
+use `rv plan` to make sure it can find compatible versions
+
+use `rv sync` to install everything
+
+`Failed to load config at `.`` likely means a syntax error in rproject.toml
 
 make sure to add these files to your github:
 - rv/scripts/activate.R
@@ -166,3 +209,9 @@ When cloning a new repo that used rv:
 - clone
 - cd into the repo
 - rv sync to install all packages
+
+In vscode to keep from getting angry messages about your R version not matching your R version path in the settings, change your settings json:
+"r.rterm.linux": "R",
+    "r.rpath.linux": "R",
+
+I can't seem to get these to go away. The root cause seems to be the vscode has multiple processes running in the background for linting, languageserver, etc.. and they key off of the R version in the R extension settings. I would need to match these versions with the version loaded in my bashrc. One workaround may be to run R from inside a container but then I can't start slurm jobs.
