@@ -63,3 +63,9 @@ if command
 
 command is executed and the if statement acts according to its exit code.
 
+## Make scrolling work in screen sessions
+add this to your ~/.screenrc file:
+```
+# Make scrolling work
+termcapinfo xterm* ti@:te@
+```
