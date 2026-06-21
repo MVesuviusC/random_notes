@@ -10,11 +10,15 @@
     ```
     cd ~/
     git clone https://github.com/KlipperScreen/KlipperScreen.git
-    ./KlipperScreen/scripts/KlipperScreen-install.sh
+    ./KlipperScreen/scripts/KlipperScreen-install.sh 
+    or
+    BACKEND="X" SERVICE="Y" NETWORK="N" START=1 ./KlipperScreen/scripts/KlipperScreen-install.sh
     ```
     4.2 When installing
-        4.2.1 install xserver
-        4.2.2 *** Do not install the network manager ***
+        4.2.1 say yes to install regular desktop app
+        4.2.2 install xserver
+        4.2.3 *** Do not install the network manager ***
+            This will delete your wifi info and you'll have to start all over
 5. Add config files
     5.1 Open http://mainsailos.local/config
     5.2 Go to machine
