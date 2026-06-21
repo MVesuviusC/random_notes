@@ -33,7 +33,7 @@
         mode: camera-streamer
         port: 8080
         device: /base/soc/i2c0mux/i2c@1/ov5647@36
-        resolution: 1920x1080
+        resolution: 640x480
         max_fps: 30
     ```
     7.3 Go to ttp://mainsailos.local/config and click on gears
