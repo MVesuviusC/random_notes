@@ -11,7 +11,7 @@
     cd ~/
     git clone https://github.com/KlipperScreen/KlipperScreen.git
     ./KlipperScreen/scripts/KlipperScreen-install.sh 
-    or
+    # or
     BACKEND="X" SERVICE="Y" NETWORK="N" START=1 ./KlipperScreen/scripts/KlipperScreen-install.sh
     ```
     4.2 When installing
