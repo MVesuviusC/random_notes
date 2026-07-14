@@ -32,6 +32,10 @@ alias sbatch_l='sbatch --time=$(get_maint_time)'
 
 Franklin has 300 process limit
 
+## Get GPU
+
+srun -c 4 --gres=gpu --account=gdrobertslab --x11 --pty bash
+
 ## See OOM kill events
 
 ```{bash}
