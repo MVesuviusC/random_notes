@@ -39,3 +39,18 @@
     7.3 Go to ttp://mainsailos.local/config and click on gears
     7.4 Add webcam - should just need to name it
 
+## Timelapse for prusa buddycam
+1. Have sd card in buddycam
+2. Turn on timelapse in the app
+3. Transfer pictures to computer after it's done
+4. use ffmpeg to make mp4
+    -  ffmpeg \
+        -f concat \
+        -safe 0 \
+        -r 100 \
+        -i filelist.txt \
+        -vf "fps=60" \
+        -c:v libx264 \
+        -pix_fmt yuv420p \
+        output.mp4
+    - -r is frames per second - increase to make the video shorter
