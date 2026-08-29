@@ -43,7 +43,9 @@
 1. Have sd card in buddycam
 2. Turn on timelapse in the app
 3. Transfer pictures to computer after it's done
-4. use ffmpeg to make mp4
+4. Make a list of the image files in a text file
+    - Get-ChildItem -Path "20260828\timelapse_*.jpg" | Sort-Object Name | ForEach-Object { "file '$($_.FullName -replace '\\','/')'`nduration 0.025" } | Out-File -Encoding ascii filelist.txt
+5. use ffmpeg to make mp4
     -  ffmpeg \
         -f concat \
         -safe 0 \
