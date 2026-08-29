@@ -54,3 +54,4 @@
         -pix_fmt yuv420p \
         output.mp4
     - -r is frames per second - increase to make the video shorter
+        - this needs to be before -i so it is used as the input framerate
