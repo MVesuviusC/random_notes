@@ -220,3 +220,16 @@ In vscode to keep from getting angry messages about your R version not matching 
 ```
 
 Making the .vscode/settings.json folder for each project is a way around this. The root cause seems to be the vscode has multiple processes running in the background for linting, languageserver, etc.. and they key off of the R version in the R extension settings.
+
+
+
+# ggplot2
+
+If you modify the guides using guides(), guide_legend will force a continuous guide to be split into discontinous values, guide_colorbar does not.
+```
+ggplot2::guides(
+      fill = ggplot2::guide_colorbar(order = 1),
+      size = ggplot2::guide_legend(order = 2),
+      shape = ggplot2::guide_legend(order = 3)
+    )
+```
