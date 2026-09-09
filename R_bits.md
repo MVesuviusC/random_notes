@@ -233,3 +233,8 @@ ggplot2::guides(
       shape = ggplot2::guide_legend(order = 3)
     )
 ```
+
+
+# misc
+
+on.exit() will execute specific code when an R function stops, even if it errors out
