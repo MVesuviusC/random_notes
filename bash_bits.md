@@ -73,3 +73,8 @@ add this to your ~/.screenrc file:
 # Make scrolling work
 termcapinfo xterm* ti@:te@
 ```
+
+## Make script die if an error happens
+
+set -e # kill the script if a command returns an error
+set -u # die if the script has an unset variable
