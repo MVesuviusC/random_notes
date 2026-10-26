@@ -1,6 +1,10 @@
 # raw strings
 print(r"{this is not interpreted!@#$%^&*()}")
 
+# Make the display width of the terminal wider
+Can add this to your .Rprofile file to make it permanent
+options(width = 150)
+
 # Failure to install a package
 
 ```
